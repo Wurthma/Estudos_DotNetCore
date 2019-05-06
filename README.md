@@ -21,6 +21,7 @@ Adicionar o identity em projetos já existentes (Core 2.2):
 	-Ficando assim: public class ApplicationDataContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
 10- Adicionar o identity ao pipe line da aplicação no Startup.cs método Configure: app.UseAuthentication()
 11- Add-Migration Initial
+12- Criar controllers e Views necessárias para controlar usuários (CRUD identity).
 
 --------------------------------------------------------
 CoreIdentityConfigs
@@ -31,3 +32,4 @@ Detalhes:
 Estudo das configurações disponíveis no Identity (Core 2.2).
 
 Os detalhes das configurações estão comentadas no arquivo Startup.cs no services de configurações do Identity.
+Algumas configurações desse projeto também foram utilizadas no projeto AddIdentity_ProjetoExistente mas não com tanto detalhes.
