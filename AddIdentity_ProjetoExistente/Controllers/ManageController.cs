@@ -86,5 +86,54 @@ namespace AddIdentity_ProjetoExistente.Controllers
             StatusMessage = "Seu perfil foi atualizado";
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangePassword()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Não foi possível carregar os dados de usuário com ID {_userManager.GetUserId(User)}");
+            }
+
+            var model = new ChangePasswordViewModel { StatusMessage = StatusMessage };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+
+            if(user == null)
+            {
+                throw new ApplicationException($"Não foi possível carregar os dados de usuário com ID {_userManager.GetUserId(User)}");
+            }
+
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+
+            if (!changePasswordResult.Succeeded)
+            {
+                foreach(var error in changePasswordResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+
+            await _signManager.SignInAsync(user, isPersistent: false);
+
+            StatusMessage = "Sua senha foi alterada com sucesso";
+
+            return RedirectToAction(nameof(ChangePassword));
+        }
     }
 }
