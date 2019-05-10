@@ -148,7 +148,7 @@ namespace ExternalProvidersIdentity.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("ExternalProvidersIdentity"),
+                _urlEncoder.Encode("2FA Test"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

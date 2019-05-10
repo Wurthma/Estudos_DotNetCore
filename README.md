@@ -54,3 +54,9 @@ ExternalProviderIdentity
 Exemplo de uso de Provedores externos para autenticação na aplicação utilizando core 2.2: Facebook, Twitter, Google, etc.
 
 Detalhes: No core 2.1 em diante o identity utiliza Razor Class Library (RCL) e o código fonte do identity não fica disponível na aplicação. Mas é posssível fazer o Scaffolding para a ageração do código fonte na aplicação. Mais informações: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-2.1&tabs=visual-studio
+
+Two Factor Authentication
+
+Essa aplicação também possui exemplo de implementação de two factor authentication. Para isso foi utilizado o qrcodejs: https://davidshimjs.github.io/qrcodejs/
+
+Para mais detalhes verificar a View EnableAuthenticator.cshtml e o método GenerateQrCodeUri do identity gerado na aplicação e alterado para implementação do Two Factor.

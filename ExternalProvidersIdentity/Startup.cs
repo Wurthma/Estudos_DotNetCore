@@ -61,6 +61,27 @@ namespace ExternalProvidersIdentity
                 //Opção para salvar os tokens no banco de dados da aplicação após autenticação do usuário usando o facebook, os tokens são gerados ao buscar as claims do usuário no facebook
                 //Para funcionar é necessário alterar o Controller do Identity (ExternalLogin.cshtml.cs)
                 facebookOptions.SaveTokens = true;
+            })
+            .AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.SaveTokens = true;
+            })
+            .AddTwitter(twitterOptions => 
+            {
+                twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                twitterOptions.SaveTokens = true;
+                //Para twitter é necessário específicar os dados a serem acessados:
+                twitterOptions.RetrieveUserDetails = true;
+                twitterOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email", ClaimValueTypes.Email);
+            })
+            .AddMicrosoftAccount(maOptions => 
+            {
+                maOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                maOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
+                maOptions.SaveTokens = true;
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
