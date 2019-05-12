@@ -60,3 +60,8 @@ Two Factor Authentication
 Essa aplicação também possui exemplo de implementação de two factor authentication. Para isso foi utilizado o qrcodejs: https://davidshimjs.github.io/qrcodejs/
 
 Para mais detalhes verificar a View EnableAuthenticator.cshtml e o método GenerateQrCodeUri do identity gerado na aplicação e alterado para implementação do Two Factor.
+
+--------------------------------------------------------
+IdentityWithDapper
+
+Projeto com exemplo de implementação de Identity Core utilizando Dapper ORM.
